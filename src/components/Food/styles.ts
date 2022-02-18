@@ -7,6 +7,8 @@ interface IContainerProps {
 export const Container = styled.div<IContainerProps>`
   background: #f0f0f5;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
 
   header {
     background: #ffb84d;
@@ -30,6 +32,7 @@ export const Container = styled.div<IContainerProps>`
 
   section.body {
     padding: 30px;
+    flex-grow: 1;
 
     h2 {
       color: #3d3d4d;
