@@ -8,6 +8,13 @@ import ModalEditFood from '../../components/ModalEditFood'
 import { IFood } from '../../types'
 import { FoodsContainer } from './styles'
 
+interface INewFood {
+  name: string
+  description: string
+  price: string
+  image: string
+}
+
 const Dashboard = () => {
   const [foods, setFoods] = useState<IFood[]>([])
   const [editingFood, setEditingFood] = useState<IFood>({} as IFood)
@@ -18,7 +25,7 @@ const Dashboard = () => {
     api.get('/foods').then(response => setFoods(response.data))
   }, [])
 
-  const handleAddFood = async (food: Omit<IFood, 'id' | 'available'>) => {
+  const handleAddFood = async (food: INewFood) => {
     try {
       const response = await api.post('/foods', {
         ...food,
@@ -31,7 +38,7 @@ const Dashboard = () => {
     }
   }
 
-  const handleUpdateFood = async (food: IFood) => {
+  const handleUpdateFood = async (food: INewFood) => {
     try {
       const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
         ...editingFood,
