@@ -18,7 +18,7 @@ const Dashboard = () => {
     api.get('/foods').then(response => setFoods(response.data))
   }, [])
 
-  const handleAddFood = async (food: IFood) => {
+  const handleAddFood = async (food: Omit<IFood, 'id' | 'available'>) => {
     try {
       const response = await api.post('/foods', {
         ...food,
